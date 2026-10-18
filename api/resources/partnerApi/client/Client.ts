@@ -16,7 +16,7 @@ export declare namespace PartnerApiClient {
 }
 
 /**
- * Reseller and white-label endpoints for managing customer sub-accounts, balance transfers, transactions, CDRs, and DIDs across your partner ecosystem
+ * Reseller endpoints for managing customer sub-accounts, balance transfers, transactions, CDRs, and DIDs across your partner ecosystem
  */
 export class PartnerApiClient {
     protected readonly _options: NormalizedClientOptionsWithAuth<PartnerApiClient.Options>;
