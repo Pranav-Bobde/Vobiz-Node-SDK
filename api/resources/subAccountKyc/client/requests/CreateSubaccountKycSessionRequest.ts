@@ -34,7 +34,7 @@ export interface CreateSubaccountKycSessionRequest {
      * browser is sent to this URL.
      */
     redirect_url?: string;
-    /** HTTPS endpoint VoBiz POSTs the KYC result to. Omit it and no callbacks are sent. */
+    /** HTTPS endpoint Vobiz POSTs the KYC result to. Omit it and no callbacks are sent. */
     webhook_url?: string;
     expires_in_days?: number;
 }

@@ -214,7 +214,7 @@ export class PartnerApiClient {
     }
 
     /**
-     * Creates a new customer sub-account under your partner account. VoBiz
+     * Creates a new customer sub-account under your partner account. Vobiz
      * emails the customer their login credentials and (separately) a KYC link
      * via the kyc-sessions endpoint.
      *
@@ -707,7 +707,7 @@ export class PartnerApiClient {
     }
 
     /**
-     * Triggers VoBiz to email a KYC link to the customer. KYC is OTP-based
+     * Triggers Vobiz to email a KYC link to the customer. KYC is OTP-based
      * (PAN + Aadhaar via DigiLocker for individuals, PAN + GSTIN for
      * companies). No document uploads required.
      *
