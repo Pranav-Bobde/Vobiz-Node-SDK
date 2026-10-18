@@ -21,7 +21,7 @@ export interface CreateKycSessionRequest {
      * browser is sent to this URL with query params `session_id`, `status`, `auth_id`.
      */
     redirect_url?: string;
-    /** VoBiz POSTs the KYC result here. */
+    /** Vobiz POSTs the KYC result here. */
     webhook_url?: string;
     /** Days before the KYC link expires. */
     expires_in_days?: number;
