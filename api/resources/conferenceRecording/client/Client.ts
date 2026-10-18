@@ -50,10 +50,7 @@ export class ConferenceRecordingClient {
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
             this._options?.headers,
-            mergeOnlyDefinedHeaders({
-                "X-Auth-ID": requestOptions?.authId ?? this._options?.authId,
-                "X-Auth-Token": requestOptions?.authToken ?? this._options?.authToken,
-            }),
+            mergeOnlyDefinedHeaders({ "X-Auth-Token": requestOptions?.authToken ?? this._options?.authToken }),
             requestOptions?.headers,
         );
         const _response = await core.fetcher({
@@ -123,10 +120,7 @@ export class ConferenceRecordingClient {
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
             this._options?.headers,
-            mergeOnlyDefinedHeaders({
-                "X-Auth-ID": requestOptions?.authId ?? this._options?.authId,
-                "X-Auth-Token": requestOptions?.authToken ?? this._options?.authToken,
-            }),
+            mergeOnlyDefinedHeaders({ "X-Auth-Token": requestOptions?.authToken ?? this._options?.authToken }),
             requestOptions?.headers,
         );
         const _response = await core.fetcher({

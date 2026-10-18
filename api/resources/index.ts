@@ -57,6 +57,7 @@ export * as recordCalls from "./recordCalls/index.js";
 export * from "./recordings/client/requests/index.js";
 export * as recordings from "./recordings/index.js";
 export * from "./recordings/types/index.js";
+export * as sms from "./sms/index.js";
 export * from "./speakText/client/requests/index.js";
 export * as speakText from "./speakText/index.js";
 export * from "./subAccountKyc/client/requests/index.js";

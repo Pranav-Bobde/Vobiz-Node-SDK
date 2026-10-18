@@ -1,0 +1,10 @@
+export type { CreateSenderRequest } from "./CreateSenderRequest.js";
+export type { CreateTemplateRequest } from "./CreateTemplateRequest.js";
+export type { DeleteTemplateRequest } from "./DeleteTemplateRequest.js";
+export type { GetSenderRequest } from "./GetSenderRequest.js";
+export type { GetSenderStatusRequest } from "./GetSenderStatusRequest.js";
+export type { GetTemplateRequest } from "./GetTemplateRequest.js";
+export type { GetTemplateStatusRequest } from "./GetTemplateStatusRequest.js";
+export type { ListSendersRequest } from "./ListSendersRequest.js";
+export type { ListTemplatesRequest } from "./ListTemplatesRequest.js";
+export type { UpdateSenderRequest } from "./UpdateSenderRequest.js";

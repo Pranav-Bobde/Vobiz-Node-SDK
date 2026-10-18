@@ -22,6 +22,7 @@ import { PhoneNumbersClient } from "./api/resources/phoneNumbers/client/Client.j
 import { PlayAudioClient } from "./api/resources/playAudio/client/Client.js";
 import { RecordCallsClient } from "./api/resources/recordCalls/client/Client.js";
 import { RecordingsClient } from "./api/resources/recordings/client/Client.js";
+import { SmsClient } from "./api/resources/sms/client/Client.js";
 import { SpeakTextClient } from "./api/resources/speakText/client/Client.js";
 import { SubAccountKycClient } from "./api/resources/subAccountKyc/client/Client.js";
 import { SubAccountKycTestModeClient } from "./api/resources/subAccountKycTestMode/client/Client.js";
@@ -66,6 +67,7 @@ export class VobizClient {
     protected _applications: ApplicationsClient | undefined;
     protected _endpoints: EndpointsClient | undefined;
     protected _partnerApi: PartnerApiClient | undefined;
+    protected _sms: SmsClient | undefined;
 
     constructor(options: VobizClient.Options) {
         this._options = normalizeClientOptionsWithAuth(options);
@@ -177,6 +179,10 @@ export class VobizClient {
 
     public get partnerApi(): PartnerApiClient {
         return (this._partnerApi ??= new PartnerApiClient(this._options));
+    }
+
+    public get sms(): SmsClient {
+        return (this._sms ??= new SmsClient(this._options));
     }
 
     /**
