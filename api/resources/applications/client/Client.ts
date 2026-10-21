@@ -122,7 +122,9 @@ export class ApplicationsClient {
      *         auth_id: "MA_XXXXXX",
      *         app_name: "My Voice Application",
      *         answer_url: "https://example.com/answer",
-     *         answer_method: "POST"
+     *         answer_method: "POST",
+     *         hangup_url: "https://example.com/hangup",
+     *         hangup_method: "POST"
      *     })
      */
     public createApplication(
@@ -279,7 +281,11 @@ export class ApplicationsClient {
      *         auth_id: "MA_XXXXXX",
      *         app_id: "12345678",
      *         app_name: "Updated Application Name",
-     *         default_number_app: true
+     *         default_number_app: true,
+     *         answer_url: "https://example.com/answer",
+     *         answer_method: "POST",
+     *         hangup_url: "https://example.com/hangup",
+     *         hangup_method: "POST"
      *     })
      */
     public updateApplication(

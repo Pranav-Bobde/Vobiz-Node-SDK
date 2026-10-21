@@ -2,9 +2,11 @@ export type { AssignDidToSubaccountRequest } from "./AssignDidToSubaccountReques
 export type { AssignNumberToTrunkRequest } from "./AssignNumberToTrunkRequest.js";
 export type { CancelNumberReleaseRequest } from "./CancelNumberReleaseRequest.js";
 export type { GetNumberHealthRequest } from "./GetNumberHealthRequest.js";
+export type { LinkNumberToApplicationRequest } from "./LinkNumberToApplicationRequest.js";
 export type { ListInventoryNumbersRequest } from "./ListInventoryNumbersRequest.js";
 export type { ListNumbersRequest } from "./ListNumbersRequest.js";
 export type { PurchaseFromInventoryRequest } from "./PurchaseFromInventoryRequest.js";
 export type { UnassignDidFromSubaccountRequest } from "./UnassignDidFromSubaccountRequest.js";
 export type { UnassignNumberFromTrunkRequest } from "./UnassignNumberFromTrunkRequest.js";
+export type { UnlinkNumberFromApplicationRequest } from "./UnlinkNumberFromApplicationRequest.js";
 export type { UnrentNumberRequest } from "./UnrentNumberRequest.js";

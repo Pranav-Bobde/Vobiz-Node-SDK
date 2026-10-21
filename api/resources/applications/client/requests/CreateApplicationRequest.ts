@@ -6,7 +6,9 @@
  *         auth_id: "MA_XXXXXX",
  *         app_name: "My Voice Application",
  *         answer_url: "https://example.com/answer",
- *         answer_method: "POST"
+ *         answer_method: "POST",
+ *         hangup_url: "https://example.com/hangup",
+ *         hangup_method: "POST"
  *     }
  */
 export interface CreateApplicationRequest {
@@ -15,4 +17,8 @@ export interface CreateApplicationRequest {
     app_name: string;
     answer_url: string;
     answer_method: string;
+    /** URL Vobiz notifies when a call on this application ends. If omitted, it defaults to `answer_url`. */
+    hangup_url?: string;
+    /** HTTP method used for `hangup_url`, `GET` or `POST`. */
+    hangup_method?: string;
 }

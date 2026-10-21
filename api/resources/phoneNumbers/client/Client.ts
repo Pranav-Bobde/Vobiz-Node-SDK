@@ -595,6 +595,172 @@ export class PhoneNumbersClient {
     }
 
     /**
+     * Link a phone number to a voice application. Once linked, inbound
+     * calls to that number fetch VobizXML from the application's
+     * `answer_url`. A number routes through either an application or a
+     * SIP trunk, not both: unassign the number from its trunk first
+     * (`DELETE /api/v1/Account/{auth_id}/numbers/{phone_number}/assign`).
+     * URL-encode the phone number (use `%2B` instead of `+`).
+     *
+     * @param {Vobiz.LinkNumberToApplicationRequest} request
+     * @param {PhoneNumbersClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Vobiz.BadRequestError}
+     * @throws {@link Vobiz.NotFoundError}
+     * @throws {@link Vobiz.ConflictError}
+     *
+     * @example
+     *     await client.phoneNumbers.linkNumberToApplication({
+     *         auth_id: "MA_XXXXXX",
+     *         e164: "%2B912271264217",
+     *         application_id: "12345678901234567"
+     *     })
+     */
+    public linkNumberToApplication(
+        request: Vobiz.LinkNumberToApplicationRequest,
+        requestOptions?: PhoneNumbersClient.RequestOptions,
+    ): core.HttpResponsePromise<void> {
+        return core.HttpResponsePromise.fromPromise(this.__linkNumberToApplication(request, requestOptions));
+    }
+
+    private async __linkNumberToApplication(
+        request: Vobiz.LinkNumberToApplicationRequest,
+        requestOptions?: PhoneNumbersClient.RequestOptions,
+    ): Promise<core.WithRawResponse<void>> {
+        const { auth_id: authId, e164, ..._body } = request;
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({ "X-Auth-Token": requestOptions?.authToken ?? this._options?.authToken }),
+            requestOptions?.headers,
+        );
+        const _response = await core.fetcher({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.VobizEnvironment.Production,
+                `api/v1/Account/${core.url.encodePathParam(authId)}/numbers/${core.url.encodePathParam(e164)}/application`,
+            ),
+            method: "POST",
+            headers: _headers,
+            contentType: "application/json",
+            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
+            requestType: "json",
+            body: _body,
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return { data: undefined, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Vobiz.BadRequestError(_response.error.body as unknown, _response.rawResponse);
+                case 404:
+                    throw new Vobiz.NotFoundError(_response.error.body as unknown, _response.rawResponse);
+                case 409:
+                    throw new Vobiz.ConflictError(_response.error.body as unknown, _response.rawResponse);
+                default:
+                    throw new errors.VobizError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "POST",
+            "/api/v1/Account/{auth_id}/numbers/{e164}/application",
+        );
+    }
+
+    /**
+     * Remove the link between a phone number and its voice application.
+     * The number stays in your account inventory but inbound calls no
+     * longer fetch VobizXML from that application.
+     * URL-encode the phone number (use `%2B` instead of `+`).
+     *
+     * @param {Vobiz.UnlinkNumberFromApplicationRequest} request
+     * @param {PhoneNumbersClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Vobiz.NotFoundError}
+     *
+     * @example
+     *     await client.phoneNumbers.unlinkNumberFromApplication({
+     *         auth_id: "MA_XXXXXX",
+     *         e164: "%2B912271264217"
+     *     })
+     */
+    public unlinkNumberFromApplication(
+        request: Vobiz.UnlinkNumberFromApplicationRequest,
+        requestOptions?: PhoneNumbersClient.RequestOptions,
+    ): core.HttpResponsePromise<void> {
+        return core.HttpResponsePromise.fromPromise(this.__unlinkNumberFromApplication(request, requestOptions));
+    }
+
+    private async __unlinkNumberFromApplication(
+        request: Vobiz.UnlinkNumberFromApplicationRequest,
+        requestOptions?: PhoneNumbersClient.RequestOptions,
+    ): Promise<core.WithRawResponse<void>> {
+        const { auth_id: authId, e164 } = request;
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({ "X-Auth-Token": requestOptions?.authToken ?? this._options?.authToken }),
+            requestOptions?.headers,
+        );
+        const _response = await core.fetcher({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.VobizEnvironment.Production,
+                `api/v1/Account/${core.url.encodePathParam(authId)}/numbers/${core.url.encodePathParam(e164)}/application`,
+            ),
+            method: "DELETE",
+            headers: _headers,
+            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return { data: undefined, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 404:
+                    throw new Vobiz.NotFoundError(_response.error.body as unknown, _response.rawResponse);
+                default:
+                    throw new errors.VobizError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "DELETE",
+            "/api/v1/Account/{auth_id}/numbers/{e164}/application",
+        );
+    }
+
+    /**
      * Returns the health & analytics dashboard for one of your numbers: current
      * status, spam flag, and call metrics over the selected window (total and
      * answered calls, answer rate, minutes, average duration) plus a per-period

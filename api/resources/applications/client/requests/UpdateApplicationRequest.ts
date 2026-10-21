@@ -6,7 +6,11 @@
  *         auth_id: "MA_XXXXXX",
  *         app_id: "12345678",
  *         app_name: "Updated Application Name",
- *         default_number_app: true
+ *         default_number_app: true,
+ *         answer_url: "https://example.com/answer",
+ *         answer_method: "POST",
+ *         hangup_url: "https://example.com/hangup",
+ *         hangup_method: "POST"
  *     }
  */
 export interface UpdateApplicationRequest {
@@ -15,4 +19,12 @@ export interface UpdateApplicationRequest {
     app_id: string;
     app_name: string;
     default_number_app: boolean;
+    /** URL Vobiz fetches VobizXML from when a call reaches a number or endpoint linked to this application. */
+    answer_url?: string;
+    /** HTTP method used for `answer_url`, `GET` or `POST`. */
+    answer_method?: string;
+    /** URL Vobiz notifies when a call on this application ends. */
+    hangup_url?: string;
+    /** HTTP method used for `hangup_url`, `GET` or `POST`. */
+    hangup_method?: string;
 }
