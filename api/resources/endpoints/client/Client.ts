@@ -124,6 +124,10 @@ export class EndpointsClient {
      * through IP phones, softphones, or SIP clients. Each endpoint is
      * assigned a unique SIP URI and endpoint ID.
      *
+     * The API appends digits to the `username` you request (for example,
+     * `acme01` can become `acme0125672327435497`). Configure your SIP client
+     * with the `username` returned in the response.
+     *
      * @param {Vobiz.CreateEndpointRequest} request
      * @param {EndpointsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -135,7 +139,7 @@ export class EndpointsClient {
      *         username: "john_doe",
      *         password: "SecurePassword123!",
      *         alias: "John's Desktop Phone",
-     *         application: 12345678
+     *         app_id: "12345678901234567"
      *     })
      */
     public createEndpoint(
@@ -294,7 +298,8 @@ export class EndpointsClient {
      *         auth_id: "MA_XXXXXX",
      *         endpoint_id: "87654321",
      *         alias: "John's Updated Desktop Phone",
-     *         password: "NewSecurePassword456!"
+     *         password: "NewSecurePassword456!",
+     *         app_id: "12345678901234567"
      *     })
      */
     public updateEndpoint(

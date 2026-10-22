@@ -4,15 +4,22 @@
  * @example
  *     {
  *         auth_id: "MA_XXXXXX",
- *         name: "Primary SBC",
- *         sip_uri: "sip:sbc.example.com",
+ *         uri: "sip:sbc.example.com",
+ *         description: "Primary SBC",
  *         priority: 1
  *     }
  */
 export interface CreateOriginationUriRequest {
     /** Your account Auth ID */
     auth_id: string;
-    name: string;
-    sip_uri: string;
+    /** SIP URI of your inbound destination, for example `sip:sbc.example.com`. */
+    uri: string;
+    /** Label for the origination URI. */
+    description?: string;
+    /** Routing priority. Lower values are tried first. */
     priority: number;
+    /** Not read by the API. The API accepts the request but stores an empty `uri`. Send `uri` instead. */
+    sip_uri?: string;
+    /** Not read by the API. Send `description` instead. */
+    name?: string;
 }

@@ -6,7 +6,8 @@
  *         auth_id: "MA_XXXXXX",
  *         endpoint_id: "87654321",
  *         alias: "John's Updated Desktop Phone",
- *         password: "NewSecurePassword456!"
+ *         password: "NewSecurePassword456!",
+ *         app_id: "12345678901234567"
  *     }
  */
 export interface UpdateEndpointRequest {
@@ -15,4 +16,6 @@ export interface UpdateEndpointRequest {
     endpoint_id: string;
     alias: string;
     password: string;
+    /** ID of the application to attach to this endpoint, as a string. */
+    app_id?: string;
 }

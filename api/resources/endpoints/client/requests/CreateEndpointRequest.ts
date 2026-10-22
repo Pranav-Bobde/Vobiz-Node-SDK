@@ -7,7 +7,7 @@
  *         username: "john_doe",
  *         password: "SecurePassword123!",
  *         alias: "John's Desktop Phone",
- *         application: 12345678
+ *         app_id: "12345678901234567"
  *     }
  */
 export interface CreateEndpointRequest {
@@ -16,5 +16,8 @@ export interface CreateEndpointRequest {
     username: string;
     password: string;
     alias: string;
-    application: number;
+    /** ID of the application that handles calls from this endpoint. Application IDs are 17-digit strings; send them as JSON strings. */
+    app_id?: string;
+    /** Not read by the API. Application IDs exceed the range of a JSON integer, and the endpoint is created without an application. Send `app_id` instead. */
+    application?: number;
 }

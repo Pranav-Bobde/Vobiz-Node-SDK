@@ -24,7 +24,7 @@ export interface CreateTrunkRequest {
     name: string;
     /** Direction of the trunk - **`inbound` or `outbound` only** (a trunk is one direction, not both). */
     trunk_direction?: CreateTrunkRequest.TrunkDirection;
-    /** Trunk status - `enabled` or `disabled` (note: not `active`). */
+    /** Trunk status to set - `enabled` or `disabled`. Responses report `enabled` as `active` and `disabled` as `suspended`. */
     trunk_status?: CreateTrunkRequest.TrunkStatus;
     secure?: boolean;
     /** SIP domain. Auto-generated as `{first8ofUUID}.sip.vobiz.ai` if omitted. */
@@ -78,7 +78,7 @@ export namespace CreateTrunkRequest {
         Outbound: "outbound",
     } as const;
     export type TrunkDirection = (typeof TrunkDirection)[keyof typeof TrunkDirection];
-    /** Trunk status - `enabled` or `disabled` (note: not `active`). */
+    /** Trunk status to set - `enabled` or `disabled`. Responses report `enabled` as `active` and `disabled` as `suspended`. */
     export const TrunkStatus = {
         Enabled: "enabled",
         Disabled: "disabled",

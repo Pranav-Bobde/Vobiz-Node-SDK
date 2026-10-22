@@ -30,6 +30,8 @@ export class PartnerApiClient {
      *
      * @param {PartnerApiClient.RequestOptions} requestOptions - Request-specific configuration.
      *
+     * @throws {@link Vobiz.UnauthorizedError}
+     *
      * @example
      *     await client.partnerApi.getPartnerProfile()
      */
@@ -70,11 +72,16 @@ export class PartnerApiClient {
         }
 
         if (_response.error.reason === "status-code") {
-            throw new errors.VobizError({
-                statusCode: _response.error.statusCode,
-                body: _response.error.body,
-                rawResponse: _response.rawResponse,
-            });
+            switch (_response.error.statusCode) {
+                case 401:
+                    throw new Vobiz.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                default:
+                    throw new errors.VobizError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
         }
 
         return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/api/v1/partner/me");
@@ -85,6 +92,8 @@ export class PartnerApiClient {
      * held across the partner ecosystem, MTD revenue, etc.
      *
      * @param {PartnerApiClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Vobiz.UnauthorizedError}
      *
      * @example
      *     await client.partnerApi.getPartnerDashboard()
@@ -126,11 +135,16 @@ export class PartnerApiClient {
         }
 
         if (_response.error.reason === "status-code") {
-            throw new errors.VobizError({
-                statusCode: _response.error.statusCode,
-                body: _response.error.body,
-                rawResponse: _response.rawResponse,
-            });
+            switch (_response.error.statusCode) {
+                case 401:
+                    throw new Vobiz.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                default:
+                    throw new errors.VobizError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
         }
 
         return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/api/v1/partner/dashboard");

@@ -15,6 +15,7 @@ export interface GetRecordingResponse {
     recording_storage_duration: number;
     recording_storage_rate: number;
     recording_type: string;
+    /** Download URL for the audio, on `media.vobiz.ai`. Send the same `X-Auth-ID` and `X-Auth-Token` headers as for API requests; without them the media host returns `401`. The body is WAV (RIFF/WAVE PCM), although the response may carry `Content-Type: audio/mpeg`. */
     recording_url: string;
     resource_uri: string;
     rounded_recording_duration: number;

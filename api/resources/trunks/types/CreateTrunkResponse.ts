@@ -5,7 +5,8 @@ export interface CreateTrunkResponse {
     account_id: string;
     name: string;
     trunk_domain: string;
-    trunk_status: string;
+    /** Trunk state as reported in responses - `active` or `suspended`. Requests set it with `enabled` (reported as `active`) or `disabled` (reported as `suspended`). */
+    trunk_status: CreateTrunkResponse.TrunkStatus;
     secure: boolean;
     trunk_direction: string;
     concurrent_calls_limit: number;
@@ -19,4 +20,13 @@ export interface CreateTrunkResponse {
     recording_webhook_enabled: boolean;
     created_at: string;
     updated_at: string;
+}
+
+export namespace CreateTrunkResponse {
+    /** Trunk state as reported in responses - `active` or `suspended`. Requests set it with `enabled` (reported as `active`) or `disabled` (reported as `suspended`). */
+    export const TrunkStatus = {
+        Active: "active",
+        Suspended: "suspended",
+    } as const;
+    export type TrunkStatus = (typeof TrunkStatus)[keyof typeof TrunkStatus];
 }

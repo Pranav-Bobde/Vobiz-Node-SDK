@@ -5,7 +5,7 @@
  *     {
  *         auth_id: "MA_XXXXXX",
  *         name: "Office IP",
- *         ip_address: "ip_address"
+ *         ip_address: "YOUR_PUBLIC_IP/32"
  *     }
  */
 export interface CreateIpAclRequest {

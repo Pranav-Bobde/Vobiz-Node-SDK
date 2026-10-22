@@ -16,7 +16,8 @@ export namespace ListTrunksResponse {
             account_id: string;
             name: string;
             trunk_domain: string;
-            trunk_status: string;
+            /** Trunk state as reported in responses - `active` or `suspended`. Requests set it with `enabled` (reported as `active`) or `disabled` (reported as `suspended`). */
+            trunk_status: Item.TrunkStatus;
             secure: boolean;
             trunk_direction: string;
             concurrent_calls_limit: number;
@@ -35,6 +36,15 @@ export namespace ListTrunksResponse {
             inbound_destination?: string | undefined;
             pii_entity_types?: string | undefined;
             webhook_url?: string | undefined;
+        }
+
+        export namespace Item {
+            /** Trunk state as reported in responses - `active` or `suspended`. Requests set it with `enabled` (reported as `active`) or `disabled` (reported as `suspended`). */
+            export const TrunkStatus = {
+                Active: "active",
+                Suspended: "suspended",
+            } as const;
+            export type TrunkStatus = (typeof TrunkStatus)[keyof typeof TrunkStatus];
         }
     }
 }

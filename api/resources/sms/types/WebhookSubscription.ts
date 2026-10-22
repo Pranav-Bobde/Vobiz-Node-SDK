@@ -18,6 +18,6 @@ export interface WebhookSubscription {
     events?: Vobiz.sms.WebhookEvent[] | undefined;
     /** `true` when deliveries are on. New subscriptions start `true`; set it with `PUT /webhooks/{id}`. */
     active?: boolean | undefined;
-    /** When the subscription was created (ISO 8601). Read it from `GET /webhooks/{id}` or `GET /webhooks`. */
+    /** When the subscription was created (ISO 8601). The create response can return the zero value `0001-01-01T00:00:00Z`; read the stored time from `GET /webhooks/{id}` or `GET /webhooks`. */
     createdAt?: string | undefined;
 }

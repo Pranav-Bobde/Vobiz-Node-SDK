@@ -5,14 +5,21 @@
  *     {
  *         auth_id: "MA_XXXXXX",
  *         uri_id: "uri_id",
- *         name: "name",
- *         priority: 1
+ *         uri: "sip:sbc.example.com",
+ *         description: "Primary SBC",
+ *         priority: 2
  *     }
  */
 export interface UpdateOriginationUriRequest {
     /** Your account Auth ID */
     auth_id: string;
     uri_id: string;
-    name: string;
-    priority: number;
+    /** SIP URI of your inbound destination. */
+    uri?: string;
+    /** Label for the origination URI. */
+    description?: string;
+    /** Routing priority. Lower values are tried first. */
+    priority?: number;
+    /** Not read by the API. Send `description` instead. */
+    name?: string;
 }

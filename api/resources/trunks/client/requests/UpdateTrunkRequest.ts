@@ -14,6 +14,7 @@ export interface UpdateTrunkRequest {
     name?: string;
     /** Direction of the trunk - `inbound` or `outbound` only. */
     trunk_direction?: UpdateTrunkRequest.TrunkDirection;
+    /** Trunk status to set - `enabled` or `disabled`. Responses report `enabled` as `active` and `disabled` as `suspended`. */
     trunk_status?: UpdateTrunkRequest.TrunkStatus;
     secure?: boolean;
     trunk_domain?: string;
@@ -43,6 +44,7 @@ export namespace UpdateTrunkRequest {
         Outbound: "outbound",
     } as const;
     export type TrunkDirection = (typeof TrunkDirection)[keyof typeof TrunkDirection];
+    /** Trunk status to set - `enabled` or `disabled`. Responses report `enabled` as `active` and `disabled` as `suspended`. */
     export const TrunkStatus = {
         Enabled: "enabled",
         Disabled: "disabled",

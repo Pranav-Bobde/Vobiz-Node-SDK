@@ -31,8 +31,8 @@ export class OriginationUriClient {
      * @example
      *     await client.originationUri.createOriginationUri({
      *         auth_id: "MA_XXXXXX",
-     *         name: "Primary SBC",
-     *         sip_uri: "sip:sbc.example.com",
+     *         uri: "sip:sbc.example.com",
+     *         description: "Primary SBC",
      *         priority: 1
      *     })
      */
@@ -170,8 +170,9 @@ export class OriginationUriClient {
      *     await client.originationUri.updateOriginationUri({
      *         auth_id: "MA_XXXXXX",
      *         uri_id: "uri_id",
-     *         name: "name",
-     *         priority: 1
+     *         uri: "sip:sbc.example.com",
+     *         description: "Primary SBC",
+     *         priority: 2
      *     })
      */
     public updateOriginationUri(

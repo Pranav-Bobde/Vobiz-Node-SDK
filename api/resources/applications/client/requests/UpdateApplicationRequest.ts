@@ -17,8 +17,8 @@ export interface UpdateApplicationRequest {
     /** Your account Auth ID */
     auth_id: string;
     app_id: string;
-    app_name: string;
-    default_number_app: boolean;
+    app_name?: string;
+    default_number_app?: boolean;
     /** URL Vobiz fetches VobizXML from when a call reaches a number or endpoint linked to this application. */
     answer_url?: string;
     /** HTTP method used for `answer_url`, `GET` or `POST`. */

@@ -13,6 +13,9 @@ export interface UpdateSubaccountRequest {
     auth_id: string;
     sub_auth_id: string;
     name?: string;
+    /** Set to `false` to deactivate the sub-account. A deactivated sub-account no longer appears in list, retrieve, update or delete requests (`404`). */
+    is_active?: boolean;
+    /** Accepted but has no effect. Use `is_active` instead. */
     enabled?: boolean;
     /** Change the verification mode. Promoting to `customer_use` requires the sub-account to have an `email`. */
     kyc_mode?: UpdateSubaccountRequest.KycMode;
