@@ -299,7 +299,7 @@ export class PartnerApiClient {
      *
      * @example
      *     await client.partnerApi.partnerTransferBalance({
-     *         customer_auth_id: "MA_ZKITB8Z2",
+     *         customer_auth_id: "MA_XXXXXXXX",
      *         amount: 500,
      *         currency: "INR"
      *     })
@@ -706,7 +706,7 @@ export class PartnerApiClient {
      *
      * @example
      *     await client.partnerApi.createKycSession({
-     *         account_auth_id: "MA_ZKITB8Z2"
+     *         account_auth_id: "MA_XXXXXXXX"
      *     })
      */
     public createKycSession(

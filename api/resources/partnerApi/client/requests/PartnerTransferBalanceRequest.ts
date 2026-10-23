@@ -3,7 +3,7 @@
 /**
  * @example
  *     {
- *         customer_auth_id: "MA_ZKITB8Z2",
+ *         customer_auth_id: "MA_XXXXXXXX",
  *         amount: 500,
  *         currency: "INR"
  *     }

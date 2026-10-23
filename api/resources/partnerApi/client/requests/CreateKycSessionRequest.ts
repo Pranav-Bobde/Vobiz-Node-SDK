@@ -3,7 +3,7 @@
 /**
  * @example
  *     {
- *         account_auth_id: "MA_ZKITB8Z2"
+ *         account_auth_id: "MA_XXXXXXXX"
  *     }
  */
 export interface CreateKycSessionRequest {
